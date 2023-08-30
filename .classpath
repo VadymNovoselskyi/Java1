@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="in&amp;utMatning"/>
 	<classpathentry kind="src" path="variabler"/>
+	<classpathentry kind="src" path="Uppgifter"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
