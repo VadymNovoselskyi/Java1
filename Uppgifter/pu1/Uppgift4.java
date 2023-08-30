@@ -11,7 +11,7 @@ public class Uppgift4 {
 		System.out.println("State your name");
 		
 		//input av namnet
-		String name = input.next().charAt()
+		//String name = input.next().charAt();
 				
 		
 
