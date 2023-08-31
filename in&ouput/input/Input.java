@@ -1,4 +1,4 @@
-package inmatning;
+package input;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package utmatning;
+package output;
 
 public class Intro {
 
