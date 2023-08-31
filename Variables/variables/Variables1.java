@@ -1,6 +1,6 @@
-package paket;
+package variables;
 
-public class Variabler1 {
+public class Variables1 {
 
 	public static void main(String[] args) {
 		//Primitiva datatyper
