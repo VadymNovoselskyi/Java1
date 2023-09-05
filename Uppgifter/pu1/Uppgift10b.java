@@ -7,7 +7,7 @@ public class Uppgift10b {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Input amount of money you want to deposit");  //begäran om input av belopp
+		System.out.println("Enter amount of money you want to deposit");  //begäran om input av belopp
 		
 		int amountInput = input.nextInt(); //input av belopp
 		

@@ -7,7 +7,7 @@ public class Uppgift9 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Input a decimal number"); //begäran om input av en decimal tal
+		System.out.println("Enter a decimal number"); //begäran om input av en decimal tal
 		
 		double floatNumber = input.nextDouble(); //input av en decimal tal
 		

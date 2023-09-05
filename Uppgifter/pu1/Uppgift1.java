@@ -8,7 +8,7 @@ public class Uppgift1 {
 		//Scannerobjekt
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Input your values of length and width");
+		System.out.println("Enter your values of length and width");
 		
 		//input av längden and bredden
 

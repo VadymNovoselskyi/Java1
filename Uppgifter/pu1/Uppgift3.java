@@ -8,7 +8,7 @@ public class Uppgift3 {
 		//Scannerobjekt
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Write 3 ages");
+		System.out.println("Enter 3 ages");
 		
 		//input av tre ålderna
 		int age1 = input.nextInt();

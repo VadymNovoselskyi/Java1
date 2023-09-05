@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="in&amp;ouput"/>
 	<classpathentry kind="src" path="Variables"/>
 	<classpathentry kind="src" path="Uppgifter"/>
+	<classpathentry kind="src" path="kontrollsatser"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
