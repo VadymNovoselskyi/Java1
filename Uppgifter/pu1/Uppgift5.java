@@ -8,7 +8,7 @@ public class Uppgift5 {
 		//Scannerobjekt
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Input amoutn of money");
+		System.out.println("Enter amoutn of money");
 		
 		//input av belopp
 		int money = input.nextInt();

@@ -8,7 +8,7 @@ public class Uppgift4 {
 		//scannerobjekt
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("State your name");
+		System.out.println("Enter your name");
 		
 		//input av namnet
 		String name = input.nextLine();

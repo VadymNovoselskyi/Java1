@@ -8,12 +8,12 @@ public class Uppgift6 {
 		Scanner input = new Scanner (System.in);
 		
 		
-		System.out.println("Input value of base");
+		System.out.println("Enter value of base");
 		
 		//input av basen och höjden
 		int base = input.nextInt();
 		
-		System.out.println("Input value of height");
+		System.out.println("Enter value of height");
 		
 		int height = input.nextInt();
 		

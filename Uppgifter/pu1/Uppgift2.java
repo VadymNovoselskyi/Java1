@@ -8,7 +8,7 @@ public class Uppgift2 {
 		//Scannerobjekt
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Input you value of temperature in F");
+		System.out.println("Enter you value of temperature in F");
 		
 		//input av temperaturen
 		
