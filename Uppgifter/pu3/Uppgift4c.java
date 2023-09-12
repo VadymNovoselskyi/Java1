@@ -2,7 +2,7 @@ package pu3;
 
 import java.util.Scanner;
 
-public class Uppgift3 {
+public class Uppgift4c {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -11,13 +11,13 @@ public class Uppgift3 {
 		
 		String choise;
 		String trash;
-		int i = 0;
+		int count = 0;
 		boolean run = true;
 		
 		do {
 			System.out.println("Write a decimal number");
-			number[i] = input.nextDouble();
-			i++;
+			number[count] = input.nextDouble();
+			count++;
 			
 			System.out.println("Do you want to add another one? yes/no");
 			trash = input.nextLine();
@@ -28,7 +28,11 @@ public class Uppgift3 {
 			}
 			
 		} while(run);
-
+		
+		for(int i = 0; i < number.length; i++)
+			if(number[i] > 0) {				
+				System.out.println(number[i]);
+			}
 	}
 
 }
