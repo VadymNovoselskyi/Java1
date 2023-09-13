@@ -7,14 +7,14 @@ public class Uppgift6 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		double[] number = new double[100];
+		double[] number = new double[100]; //array för att spara alla tal
 		
-		int choise;
-		int count = 0;
-		double sum = 0;
-		double min = 0;
-		double max = 0;
-		boolean run = true;
+		int choise; //variabel för menu
+		int count = 0; //antal tal använderen mätt in
+		double sum = 0; //används för att beräkna medelväde
+		double min = 0; //används för att beräkna variationsbredden
+		double max = 0; //används för att beräkna variationsbredden
+		boolean run = true; //används för do-while
 		
 		do {
 			System.out.println("[1] Enter new number");
@@ -31,23 +31,23 @@ public class Uppgift6 {
 			}
 			else if(choise == 2) {
 				for(int i = 0; i <= count; i++) {
-					sum += number[i];
+					sum += number[i];				//summa av alla värden i array
 				}
 				System.out.println("Averages of the numbers is " +sum/count);
 			}
 			else if(choise == 3) {
 				for(int i = 0; i <= count; i++) {
-					if(number[i] < min) {
+					if(number[i] < min) { 			//kollar efter det minsta värde i array
 						min = number[i];
 					}
-					else if(number[i] > max) {
+					else if(number[i] > max) {		//kollar efter det största värde i array
 						max = number[i];
 					}
 				}
 				System.out.println("Variation width is " +(max-min));
 			}
 			else if(choise == 4) {
-				run = false;
+				run = false;				//avbryta do-while
 			}
 			else {
 				System.out.println("Wrong value");
