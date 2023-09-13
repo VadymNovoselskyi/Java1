@@ -20,7 +20,7 @@ public class Arrays {
 		
 		// tvådimensionell array:
 		
-		char[][] twoDimField = new char[3][4]; //ett tvådim tecken fält eller matris med 3 rad och 4 kolumner
+		char[][] twoDimField = new char[3][4]; //ett tvådim tecken fält eller matris med 3 rad och 4 kollumner
 		
 		System.out.println(twoDimField);
 
