@@ -10,11 +10,11 @@ public class Uppgift05 {
 		arrayPrime[0] = 1; //tilldela värderna till första två primtal, för att ha möjligheten att jämföra andra tal med de, och dividera inte med 0
 		arrayPrime[1] = 2;
 
-		boolean iIsPrime; //iIsPrim ändras till false om i är inte en primtal
+		boolean iIsPrime; //iIsPrime ändras till false om i är inte en primtal
 
-		for(int i = 3; i <= border; i++) {
+		for(int i = 2; i <= border; i++) {
 			iIsPrime = true; //refresha värde på iIsPrime varje gång vi kör om cyklen
-			for(int j = 1; j <= count; j++) { //kolla om i kan delas med något primtal som vi har fått hittils
+			for(int j = 1; j <= count; j += 2) { //kolla om i kan delas med något primtal som vi har fått hittils
 				if(i % arrayPrime[j] == 0) {
 					iIsPrime = false; //iIsPrim ändras till false om i kan delas med något annat primtal
 					break;
