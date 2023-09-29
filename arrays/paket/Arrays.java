@@ -1,4 +1,4 @@
-package paket;
+ package paket;
 
 public class Arrays {
 
