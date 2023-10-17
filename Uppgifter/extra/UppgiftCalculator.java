@@ -14,15 +14,15 @@ public class UppgiftCalculator {
 		double total; //resultat
 		int count = 0;
 
-		int choiseContinueFrom = 1; //varifrån ska man börja, t.ex vill man mätta in fler tal, eller förtsätta med nuvarande
+		int choiceContinueFrom = 1; //varifrån ska man börja, t.ex vill man mätta in fler tal, eller förtsätta med nuvarande
 
-		int choiseAddNumber; //val om man vill eller vill inte mäta in fler tal
+		int choiceAddNumber; //val om man vill eller vill inte mäta in fler tal
 		int operation; //val vilken operation ska miniräknare genomföra
 
 		do { 						//do-while som körs tills man avbryter den
 			total = 0; //annulera resultat, eftersom vi börjar om
 
-			switch(choiseContinueFrom) {
+			switch(choiceContinueFrom) {
 			case 1: 								//annulera alla tal som sparades från sedan
 				for(int i = 0; i <= count; i++) {
 					number[i] = 0;
@@ -35,8 +35,8 @@ public class UppgiftCalculator {
 					count++;
 
 					System.out.println("Do you want to add more? \n[1] Yes \n[2] No");
-					choiseAddNumber = input.nextInt(); //val om man vill lägga mer tal
-					if(choiseAddNumber == 2) {
+					choiceAddNumber = input.nextInt(); //val om man vill lägga mer tal
+					if(choiceAddNumber == 2) {
 						runInner = false;
 					}
 				} while(runInner);
@@ -76,7 +76,7 @@ public class UppgiftCalculator {
 					System.out.println("Enter valid value");				
 				}
 				System.out.println("Do you want to: \n[1] Enter new numbers \n[2] Add more numbers to existing \n[3] Continue with existing numbers \n[4] Finish");
-				choiseContinueFrom = input.nextInt(); //val att (1)mäta in nya tal(2)mäta in fler tal (3)välj annat operatorn (4) avsluta
+				choiceContinueFrom = input.nextInt(); //val att (1)mäta in nya tal(2)mäta in fler tal (3)välj annat operatorn (4) avsluta
 				break;
 			case 4: //avbrytning av yttersta do-while loopen
 				runOuter = false;

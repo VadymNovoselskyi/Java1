@@ -7,6 +7,7 @@
 	<classpathentry kind="src" path="conditions&amp;statements"/>
 	<classpathentry kind="src" path="arrays"/>
 	<classpathentry kind="src" path="Math"/>
+	<classpathentry kind="src" path="Inluppga"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
