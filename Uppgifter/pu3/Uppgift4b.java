@@ -9,7 +9,7 @@ public class Uppgift4b {
 		
 		double[] number = new double[100];
 		
-		String choise;
+		String choice;
 		String trash;
 		int count = 0;
 		boolean run = true;
@@ -21,9 +21,9 @@ public class Uppgift4b {
 			
 			System.out.println("Do you want to add another one? yes/no");
 			trash = input.nextLine();
-			choise = input.nextLine();
+			choice = input.nextLine();
 			
-			if (choise.equalsIgnoreCase("no")) {
+			if (choice.equalsIgnoreCase("no")) {
 				run = false;
 			}
 			

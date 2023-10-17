@@ -9,9 +9,9 @@ public class SwitchCase {
 
 		System.out.println("[1] Alternative one\n[2] Alternative two\n[3] Alternative three\n[4] Help");
 
-		int choise = input.nextInt();
+		int choice = input.nextInt();
 
-		switch(choise) {
+		switch(choice) {
 		case 1:
 			System.out.println("You chose alternative one");
 			break;
@@ -25,7 +25,7 @@ public class SwitchCase {
 			System.out.println("You chose alternative four");
 			break;
 		default:
-			System.out.println("Incorrect choise");
+			System.out.println("Incorrect choice");
 		}
 		
 		//en switch-case där alternativen styrs av text

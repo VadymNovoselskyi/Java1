@@ -9,7 +9,7 @@ public class Uppgift02 {
 
 		int answer = 93;	//random tal
 
-		int choise;
+		int choice;
 		boolean runInner = true;
 		boolean runOuter = true;
 
@@ -35,8 +35,8 @@ public class Uppgift02 {
 			System.out.println("[1] Yes, continue");
 			System.out.println("[2] No, stop");
 
-			choise = input.nextInt();
-			if(choise == 1) {
+			choice = input.nextInt();
+			if(choice == 1) {
 				runInner = true; //köra inner do-while igen
 			}
 			else {

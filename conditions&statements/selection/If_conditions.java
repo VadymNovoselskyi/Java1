@@ -14,7 +14,7 @@ public class If_conditions {
 		int intigerNumber = 2;
 		double decimalNumber = 2.5;
 		char character = 'v';
-		boolean choise = true;
+		boolean choice = true;
 
 		// skriver ut en logisk utsaga
 		System.out.println(intigerNumber == 2);
@@ -45,7 +45,7 @@ public class If_conditions {
 		}
 
 		// styra med boolskvariabel
-		if (choise) {
+		if (choice) {
 			System.out.println("The choise is 'true'");
 		}
 

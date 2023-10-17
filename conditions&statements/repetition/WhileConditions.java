@@ -20,12 +20,12 @@ public class WhileConditions {
 		//en del av programmet som körst tills vi avlutar
 		
 		boolean run = true; //variable som styr repetitionen
-		char choise;
+		char choice;
 		
 		do {		//do-while testar villkoret efter körning
 			System.out.println("Do you want to stop? y/n");
-			choise = input.next().charAt(0);
-			if (choise == 'y') {
+			choice = input.next().charAt(0);
+			if (choice == 'y') {
 				run = false;
 			}
 			
