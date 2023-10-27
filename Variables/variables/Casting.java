@@ -41,6 +41,7 @@ public class Casting {
 			}
 		}
 		System.out.println(text);
+		
 
 	}
 
