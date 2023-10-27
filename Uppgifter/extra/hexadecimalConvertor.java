@@ -21,8 +21,8 @@ public class hexadecimalConvertor {
 		
 		do {
 			exponent = 0; //återställa exponent, eftersom 'integer' minskas varje gång do-while körs
-			exponent = (int)(Math.log10(integer) / Math.log10(16)); //beräkna exponent till en potens som är mindre eller lika med 'integer' (1)
-			multiple = (int)(integer / Math.pow(16, exponent));
+			exponent = (int)(Math.log10(integer) / Math.log10(16)); //beräkna störts exponent till potens som är mindre eller lika med 'integer'
+			multiple = (int)(integer / Math.pow(16, exponent)); //beräkna störst multipel till potens som är mindre eller lika med 'integer'
 			
 			if(multiple < 10) {
 				hexadecimal[placeInHexadecimal] = String.format("%d", multiple).charAt(0);
