@@ -2,7 +2,7 @@ package pu1;
 
 import java.util.Scanner;
 
-public class Uppgift4 {
+public class Uppgift04 {
 
 	public static void main(String[] args) {
 		//scannerobjekt

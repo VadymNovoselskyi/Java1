@@ -1,6 +1,6 @@
-package puMetoder;
+package extra;
 
-public class Uppgift11 {
+public class EveryBaseConvertor {
 
 	public static void main(String[] args) {
 		int test1 = 69;
