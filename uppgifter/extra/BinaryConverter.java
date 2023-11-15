@@ -2,7 +2,7 @@ package extra;
 
 import java.util.Scanner;
 
-public class binaryConverter {
+public class BinaryConverter {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
