@@ -2,7 +2,7 @@ package extra;
 
 import java.util.Scanner;
 
-public class hexadecimalConvertor {
+public class HexadecimalConverter {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

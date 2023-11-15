@@ -1,63 +1,20 @@
 package extra;
 
-public class EveryBaseConvertor {
+public class EveryBaseConverter {
 
 	public static void main(String[] args) {
-		int test1 = 69;
-		int test2 = 459;
-		int test3 = 5339;
 
-		for(char a :baseConvertor(test1, 3)) {
+		for(char a :baseConvertor(12646, 16)) {
 			System.out.print(a);
 		}
 		
 		System.out.println();
 		
-		for(char a :baseConvertor(test1, 8)) {
+		for(char a :baseConvertor(1244, 20)) {
 			System.out.print(a);
 		}
 		
-		System.out.println();
 		
-		for(char a :baseConvertor(test1, 28)) {
-			System.out.print(a);
-		}
-		
-		System.out.println();
-		
-		for(char a :baseConvertor(test2, 5)) {
-			System.out.print(a);
-		}
-		
-		System.out.println();
-		
-		for(char a :baseConvertor(test2, 14)) {
-			System.out.print(a);
-		}
-		
-		System.out.println();
-		
-		for(char a :baseConvertor(test2, 26)) {
-			System.out.print(a);
-		}
-		
-		System.out.println();
-
-		for(char a :baseConvertor(test3, 8)) {
-			System.out.print(a);
-		}
-		
-		System.out.println();
-		
-		for(char a :baseConvertor(test3, 18)) {
-			System.out.print(a);
-		}
-		
-		System.out.println();
-		
-		for(char a :baseConvertor(test3, 34)) {
-			System.out.print(a);
-		}
 	}
 
 	public static char[] baseConvertor(int number, int base) {
@@ -65,8 +22,8 @@ public class EveryBaseConvertor {
 		int lengthOfNumber = (int)(Math.log10(number) / Math.log10(base)) + 1;
 		char[] newBase = new char[lengthOfNumber]; //array för hexadecimal form av 'integer'
 
-		int exponent; //lagrar störst exponent till potens med bas 16 som är lika med eller midre än 'integer'
-		int multiple; //lagrar störst multipel till potens med bas 16 och exponent = 'exponent' så att produkten blir mindre eller lika med 'integer'
+		int exponent; //lagrar störst exponent till potens med bas 'base' som är lika med eller midre än 'integer'
+		int multiple; //lagrar störst multipel till potens med bas 'base' och exponent = 'exponent' så att produkten blir mindre eller lika med 'integer'
 
 		int placeInNewBase = 0; //används för att sätta rätt hexadecimal sifra på rätt plats
 
