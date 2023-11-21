@@ -2,7 +2,7 @@ package inlupp12;
 
 import java.util.Scanner;
 
-public class Vadym2 {
+public class Vadym12 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in); //scanner-objekt
