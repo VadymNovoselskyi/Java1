@@ -3,25 +3,26 @@ package puMetoderExtra;
 public class Uppgift08 {
 
 	public static void main(String[] args) {
-		String text1 = "ABCDEFGHIJKLMNOPQRST ";
-		System.out.println(encryptMessage(6, 13, text1));
-		System.out.println(decryptMessage(6, 13, (encryptMessage(6, 13, text1))));
+		String text1 = "ABCDEFGHIJKLMNOPQRST"; //test case
+		
+		System.out.println(encryptMessage(6, 13, text1)); //kryptera test med n = 6; m = 13
+		System.out.println(decryptMessage(6, 13, (encryptMessage(6, 13, text1)))); //kryptera test med n = 6; m = 13 och sedan dekryptera det
 	}
 
-	public static String encryptMessage(int rowsNumber, int columnsNumber, String message) {
-		String encryptedMessage = "";
-		int messageLength = message.length();
+	public static String encryptMessage(int rowsNumber, int columnsNumber, String message) { //metod som krypterar 'message'
+		String encryptedMessage = ""; //string som ska innehåla krypterande 'message'
+		int messageLength = message.length(); //längden på 'message'
 
-		char[][] gridField = new char[columnsNumber][rowsNumber];
+		char[][] gridField = new char[columnsNumber][rowsNumber]; //2D array som ska lagra och kryptera 'message'
 
-		int xCoordinate = 0;
-		int bounceX = 0;
+		int xCoordinate = 0; //variabel som har koll på x-koordinat
+		int bounceX = 0; //variable som har koll på hur många gånger meddelande "studsade" i topp eller botten gränsen
 
-		int yCoordinate = 0;
-		int bounceY = 0;
+		int yCoordinate = 0; //variabel som har koll på y-koordinat
+		int bounceY = 0; //variable som har koll på hur många gånger meddelande "studsade" i vänster eller höger gränsen
 
-		for(int i = 0; i < messageLength; i++) {
-			if(gridField[xCoordinate][yCoordinate] == '\0') {	
+		for(int i = 0; i < messageLength; i++) { //for satsen som går genom alla bokstaver i 'message'
+			if(gridField[xCoordinate][yCoordinate] == '\0') { //om platsen som motsvarar aktuella x oxh y koordinarer
 				gridField[xCoordinate][yCoordinate] = message.charAt(i);
 			}
 			else {
@@ -66,12 +67,8 @@ public class Uppgift08 {
 
 		for(int i = 0; i < rowsNumber; i++) {
 			for(int j = 0; j < columnsNumber; j++) {
-				System.out.print("[" +gridField[j][i] +"]");
 				if(gridField[j][i] != '\0') {
 					encryptedMessage += gridField[j][i];
-				}
-				if(j == columnsNumber - 1) {
-					System.out.println();
 				}
 			}
 		}
