@@ -3,12 +3,15 @@ package puMetoderExtra;
 public class Uppgift09 {
 
 	public static void main(String[] args) {
-		//System.out.println("AaB".indexOf(' '));
-
+		System.out.println("ABBA".replace("A", "CAB"));
+		
 		//randomMultation();
 
 		makeMyMutation("ABBA", "CABCCCAB");
-		
+
+		//String[] test = {"CAB", "B", "B", "CAB"};
+		//System.out.println(numberOfMutations("ABBA", test, 2, 2, 0));
+
 	}
 
 	public static String makeMyMutation(String sourceGenome, String wantedGenome) {
@@ -97,6 +100,7 @@ public class Uppgift09 {
 		String[] containeredWantedGenome = new String[srcGenomeLength];
 		int srcGenomeIndexCount;
 		int wantedGenomeIndexCount;
+		int bestMultationQuantity = 3;
 
 		int doCount = 0;
 		boolean run = true;
@@ -133,9 +137,36 @@ public class Uppgift09 {
 			for(int i = 0; i < containeredWantedGenome.length; i++) {
 				System.out.println(containeredWantedGenome[i]);
 			}
-			
+
 			if(doesItMutate(sourceGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences) == true) {
-				System.out.println("Yass");
+				if(numberOfMutations(sourceGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences) <= bestMultationQuantity) {
+					bestMultationQuantity = numberOfMutations(sourceGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences);
+					System.out.println();
+					if(aOccurences > 0) {						
+						String aReplace = containeredWantedGenome[sourceGenome.indexOf('A')];
+						System.out.println(aReplace);
+					}
+					else {
+						String aReplace = "A";
+					}
+					if(bOccurences > 0) {						
+						String aReplace = containeredWantedGenome[sourceGenome.indexOf('B')];
+						System.out.println(aReplace);
+					}
+					else {
+						String bReplace = "B";
+					}
+					if(cOccurences > 0) {						
+						String aReplace = containeredWantedGenome[sourceGenome.indexOf('C')];
+					}
+					else {
+						String cReplace = "C";
+					}
+					
+					for(int i = 0; i < aOccurences; i++) {
+						//kolla ordnng
+					}
+				}
 			}
 			System.out.println();
 
@@ -148,70 +179,104 @@ public class Uppgift09 {
 		return "A";
 	}
 
-		public static boolean doesItMutate(String srcGenome, String[] containeredGenome, int aOccurenceNumber, int bOccurenceNumber, int cOccurenceNumber) {
-			if(srcGenome.indexOf('A') != -1) {
-				int[] aOccurences = new int[aOccurenceNumber];
-				int aOccurencesCount = 0;
-				int index = srcGenome.indexOf('A');
-	
-				while (index >= 0) {
-					aOccurences[aOccurencesCount] = index;
-					aOccurencesCount++;
-					index = srcGenome.indexOf('A', index + 1);
-				}
-			
-				for(int i = 0; i < aOccurenceNumber - 1; i++) {
-				    for(int j = i + 1; j < aOccurenceNumber; j++) {
-				        if (!containeredGenome[aOccurences[i]].equals(containeredGenome[aOccurences[j]])) {
-				            System.out.println("A fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[aOccurences[i]] + "' second occ is '" + containeredGenome[aOccurences[j]] + "'");
-				            return false;
-				        }
-				    }
+	public static boolean doesItMutate(String srcGenome, String[] containeredGenome, int aOccurenceNumber, int bOccurenceNumber, int cOccurenceNumber) {
+		if(srcGenome.indexOf('A') != -1) {
+			int[] aOccurences = new int[aOccurenceNumber];
+			int aOccurencesCount = 0;
+			int index = srcGenome.indexOf('A');
+
+			while (index >= 0) {
+				aOccurences[aOccurencesCount] = index;
+				aOccurencesCount++;
+				index = srcGenome.indexOf('A', index + 1);
+			}
+
+			for(int i = 0; i < aOccurenceNumber - 1; i++) {
+				for(int j = i + 1; j < aOccurenceNumber; j++) {
+					if (!containeredGenome[aOccurences[i]].equals(containeredGenome[aOccurences[j]])) {
+						return false;
+					}
 				}
 			}
-			if(srcGenome.indexOf('B') != -1) {
-				int[] bOccurences = new int[bOccurenceNumber];
-				int bOccurencesCount = 0;
-				int index = srcGenome.indexOf('B');
-	
-				while (index >= 0) {
-					bOccurences[bOccurencesCount] = index;
-					bOccurencesCount++;
-					index = srcGenome.indexOf('B', index + 1);
-				}
-	
-				for(int i = 0; i < aOccurenceNumber - 1; i++) {
-				    for(int j = i + 1; j < aOccurenceNumber; j++) {
-				        if (!containeredGenome[bOccurences[i]].equals(containeredGenome[bOccurences[j]])) {
-				            System.out.println("B fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[bOccurences[i]] + "' second occ is '" + containeredGenome[bOccurences[j]] + "'");
-				            return false;
-				        }
-				    }
-				}
-			}
-			if(srcGenome.indexOf('C') != -1) {
-				int[] cOccurences = new int[cOccurenceNumber];
-				int cOccurencesCount = 0;
-				int index = srcGenome.indexOf('C');
-	
-				while (index >= 0) {
-					cOccurences[cOccurencesCount] = index;
-					cOccurencesCount++;
-					index = srcGenome.indexOf('C', index + 1);
-				}
-				
-				for(int i = 0; i < aOccurenceNumber - 1; i++) {
-				    for(int j = i + 1; j < aOccurenceNumber; j++) {
-				        if (!containeredGenome[cOccurences[i]].equals(containeredGenome[cOccurences[j]])) {
-				            System.out.println("C fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[cOccurences[i]] + "' second occ is '" + containeredGenome[cOccurences[j]] + "'");
-				            return false;
-				        }
-				    }
-				}
-			}
-			
-			return true;
 		}
+		if(srcGenome.indexOf('B') != -1) {
+			int[] bOccurences = new int[bOccurenceNumber];
+			int bOccurencesCount = 0;
+			int index = srcGenome.indexOf('B');
+
+			while (index >= 0) {
+				bOccurences[bOccurencesCount] = index;
+				bOccurencesCount++;
+				index = srcGenome.indexOf('B', index + 1);
+			}
+
+			for(int i = 0; i < aOccurenceNumber - 1; i++) {
+				for(int j = i + 1; j < aOccurenceNumber; j++) {
+					if (!containeredGenome[bOccurences[i]].equals(containeredGenome[bOccurences[j]])) {
+						System.out.println("B fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[bOccurences[i]] + "' second occ is '" + containeredGenome[bOccurences[j]] + "'");
+						return false;
+					}
+				}
+			}
+		}
+		if(srcGenome.indexOf('C') != -1) {
+			int[] cOccurences = new int[cOccurenceNumber];
+			int cOccurencesCount = 0;
+			int index = srcGenome.indexOf('C');
+
+			while (index >= 0) {
+				cOccurences[cOccurencesCount] = index;
+				cOccurencesCount++;
+				index = srcGenome.indexOf('C', index + 1);
+			}
+
+			for(int i = 0; i < aOccurenceNumber - 1; i++) {
+				for(int j = i + 1; j < aOccurenceNumber; j++) {
+					if (!containeredGenome[cOccurences[i]].equals(containeredGenome[cOccurences[j]])) {
+						System.out.println("C fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[cOccurences[i]] + "' second occ is '" + containeredGenome[cOccurences[j]] + "'");
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
+
+	public static int numberOfMutations(String srcGenome, String[] containeredGenome, int aOccurenceNumber, int bOccurenceNumber, int cOccurenceNumber) {
+		int mutationsQuantity = 0;
+
+		if(aOccurenceNumber > 0) {			
+			if(containeredGenome[srcGenome.indexOf('A')].length() > 1) {
+				mutationsQuantity++;
+			}
+			else if(aOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('A')) != containeredGenome[srcGenome.indexOf('A')].charAt(0)) {
+				mutationsQuantity++;
+			}
+		}
+
+		if(bOccurenceNumber > 0) {			
+			if(containeredGenome[srcGenome.indexOf('B')].length() > 1) {
+				mutationsQuantity++;
+			}
+			else if(aOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('B')) != containeredGenome[srcGenome.indexOf('B')].charAt(0)) {
+				mutationsQuantity++;
+			}
+		}
+
+		if(cOccurenceNumber > 0) {			
+			if(containeredGenome[srcGenome.indexOf('C')].length() > 1) {
+				mutationsQuantity++;
+			}
+			else if(aOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('C')) != containeredGenome[srcGenome.indexOf('C')].charAt(0)) {
+				mutationsQuantity++;
+			}
+		}
+
+		return mutationsQuantity;
+	}
+
 
 	public static void randomMultation() {
 		int genomeLength = (int)(Math.random() * 4 + 2);
