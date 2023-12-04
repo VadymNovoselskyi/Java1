@@ -1,24 +1,22 @@
 package puMetoderExtra;
 
+import java.time.LocalTime;
+
 public class Uppgift09 {
 
 	public static void main(String[] args) {
-		System.out.println("ABBA".replace("A", "CAB"));
-		
 		//randomMultation();
-
-		makeMyMutation("ABBA", "CABCCCAB");
-
-		//String[] test = {"CAB", "B", "B", "CAB"};
-		//System.out.println(numberOfMutations("ABBA", test, 2, 2, 0));
-
+		System.out.println(LocalTime.now());
+		makeMyMutation("CCB", "CACACB");
+		System.out.println(LocalTime.now());
+		
 	}
 
-	public static String makeMyMutation(String sourceGenome, String wantedGenome) {
-		int srcGenomeLength = sourceGenome.length();
+	public static boolean makeMyMutation(String srcGenome, String wantedGenome) {
+		int srcGenomeLength = srcGenome.length();
 		int wantedGenomeLength = wantedGenome.length();
 
-		String[] possibleMultationsLengthOld = new String[wantedGenomeLength]; 
+		String[] possibleMultationsLengthOld = new String[10]; 
 		int possibleMultationCount = 0;
 
 		int aOccurences = 0;
@@ -26,24 +24,23 @@ public class Uppgift09 {
 		int cOccurences = 0;
 
 		/*
-		if(wantedGenomeLength / srcGenomeLength <= 3) {
+			if(wantedGenomeLength / srcGenomeLength <= 3) {
 
-		}
+			}
 		 */
 
 		for(int i = 0; i < srcGenomeLength; i++) { //antal förekommelse av A, B och C
-			if(sourceGenome.charAt(i) == 'A') {
+			if(srcGenome.charAt(i) == 'A') {
 				aOccurences++;
 			}
-			else if(sourceGenome.charAt(i) == 'B') {
+			else if(srcGenome.charAt(i) == 'B') {
 				bOccurences++;
 			}
-			else if(sourceGenome.charAt(i) == 'C') {
+			else if(srcGenome.charAt(i) == 'C') {
 				cOccurences++;
 			}
 			else {
 				System.out.println("Wrong input, only 'A', 'B' and 'C' are allowed");
-				return "Error";
 			}
 		}
 
@@ -97,15 +94,17 @@ public class Uppgift09 {
 		}
 
 
-		String[] containeredWantedGenome = new String[srcGenomeLength];
+		String[] containeredWantedGenome;
 		int srcGenomeIndexCount;
 		int wantedGenomeIndexCount;
-		int bestMultationQuantity = 3;
+		String[] fastetMultation = new String[srcGenomeLength];
+		int bestMultationQuantity = 4;
 
 		int doCount = 0;
 		boolean run = true;
 
 		do { //kollar om någon av sätt funkar, och om ja, vilket är bäst
+			containeredWantedGenome = new String[srcGenomeLength];
 			srcGenomeIndexCount = 0;
 			wantedGenomeIndexCount = 0;
 
@@ -115,12 +114,12 @@ public class Uppgift09 {
 			System.out.println(aLength +" " +bLength +" " +cLength);
 
 			do {				
-				if(sourceGenome.charAt(srcGenomeIndexCount) == 'A') {
+				if(srcGenome.charAt(srcGenomeIndexCount) == 'A') {
 					containeredWantedGenome[srcGenomeIndexCount] = wantedGenome.substring(wantedGenomeIndexCount, wantedGenomeIndexCount + aLength);
 					srcGenomeIndexCount++;
 					wantedGenomeIndexCount += aLength;
 				}
-				else if(sourceGenome.charAt(srcGenomeIndexCount) == 'B') {	
+				else if(srcGenome.charAt(srcGenomeIndexCount) == 'B') {	
 					containeredWantedGenome[srcGenomeIndexCount] = wantedGenome.substring(wantedGenomeIndexCount, wantedGenomeIndexCount + bLength);
 					srcGenomeIndexCount++;
 					wantedGenomeIndexCount += bLength;
@@ -138,46 +137,180 @@ public class Uppgift09 {
 				System.out.println(containeredWantedGenome[i]);
 			}
 
-			if(doesItMutate(sourceGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences) == true) {
-				if(numberOfMutations(sourceGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences) <= bestMultationQuantity) {
-					bestMultationQuantity = numberOfMutations(sourceGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences);
-					System.out.println();
-					if(aOccurences > 0) {						
-						String aReplace = containeredWantedGenome[sourceGenome.indexOf('A')];
-						System.out.println(aReplace);
-					}
-					else {
-						String aReplace = "A";
-					}
-					if(bOccurences > 0) {						
-						String aReplace = containeredWantedGenome[sourceGenome.indexOf('B')];
-						System.out.println(aReplace);
-					}
-					else {
-						String bReplace = "B";
-					}
-					if(cOccurences > 0) {						
-						String aReplace = containeredWantedGenome[sourceGenome.indexOf('C')];
-					}
-					else {
-						String cReplace = "C";
-					}
-					
-					for(int i = 0; i < aOccurences; i++) {
-						//kolla ordnng
-					}
+			if(doesItMutate(srcGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences) == true) {
+				String aReplace = "A";
+				String bReplace = "B";
+				String cReplace = "C";
+				if(aOccurences > 0) {						
+					aReplace = containeredWantedGenome[srcGenome.indexOf('A')];
+				}
+				if(bOccurences > 0) {						
+					bReplace = containeredWantedGenome[srcGenome.indexOf('B')];
+				}
+				if(cOccurences > 0) {						
+					cReplace = containeredWantedGenome[srcGenome.indexOf('C')];
+				}
+				if(numberOfMutations(srcGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences) <= bestMultationQuantity && (srcGenome.replace("A", aReplace).replace("B", bReplace).replace("C", cReplace).equals(wantedGenome) || srcGenome.replace("A", aReplace).replace("C", cReplace).replace("B", bReplace).equals(wantedGenome) || srcGenome.replace("B", bReplace).replace("A", aReplace).replace("C", cReplace).equals(wantedGenome) || srcGenome.replace("B", bReplace).replace("C", cReplace).replace("A", aReplace).equals(wantedGenome) || srcGenome.replace("C", cReplace).replace("A", aReplace).replace("B", bReplace).equals(wantedGenome) || srcGenome.replace("C", cReplace).replace("B", bReplace).replace("A", aReplace).equals(wantedGenome))) {
+					fastetMultation = containeredWantedGenome;
+					bestMultationQuantity = numberOfMutations(srcGenome, containeredWantedGenome, aOccurences, bOccurences, cOccurences);
 				}
 			}
 			System.out.println();
-
 
 			if(doCount >= possibleMultationsLengthNew.length) {
 				run = false;
 			}
 		} while(run);
 
-		return "A";
+		if(bestMultationQuantity != 4) {			
+			String aReplace = "A";
+			String bReplace = "B";
+			String cReplace = "C";
+			if(aOccurences > 0) {						
+				aReplace = fastetMultation[srcGenome.indexOf('A')];
+			}
+			if(bOccurences > 0) {						
+				bReplace = fastetMultation[srcGenome.indexOf('B')];
+			}
+			if(cOccurences > 0) {						
+				cReplace = fastetMultation[srcGenome.indexOf('C')];
+			}
+
+			if(srcGenome.replace("A", aReplace).replace("B", bReplace).replace("C", cReplace).equals(wantedGenome)) {
+				if(!aReplace.equals("A")) {				
+					if(!cReplace.equals("C")) {
+						if(!bReplace.equals("B")) {						
+							System.out.println("A --> " +aReplace +"\nB --> " +bReplace +"\nC --> " +cReplace);
+						}
+						else {
+							System.out.println("A --> " +aReplace +"\nC --> " +cReplace);
+						}
+					}
+					else if(!bReplace.equals("B")) {
+						System.out.println("A --> " +aReplace +"\nB --> " +bReplace);
+					}
+					else {
+						System.out.println("A --> " +aReplace);
+					}
+				}
+				
+				else {
+					if(!cReplace.equals("C")) {
+						if(!bReplace.equals("B")) {						
+							System.out.println("\nB --> " +bReplace +"\nC --> " +cReplace);
+						}
+						else {
+							System.out.println("\nC --> " +cReplace);
+						}
+					}
+					else if(!bReplace.equals("B")) {
+						System.out.println("\nB --> " +bReplace);
+					}
+				}
+			}
+
+			else if(srcGenome.replace("A", aReplace).replace("C", cReplace).replace("B", bReplace).equals(wantedGenome)) {
+				if(!bReplace.equals("B")) {
+					if(!cReplace.equals("C")) {
+						System.out.println("A --> " +aReplace +"\nC --> " +cReplace +"\nB --> " +bReplace);
+					}
+					else {
+						System.out.println("A --> " +aReplace +"\nB --> " +bReplace);
+					}
+				}
+				else if(!cReplace.equals("C")) {
+					System.out.println("A --> " +aReplace +"\nC --> " +cReplace);
+				}
+				else {
+					System.out.println("A --> " +aReplace);
+				}
+
+			}
+
+			else if(srcGenome.replace("B", bReplace).replace("A", aReplace).replace("C", cReplace).equals(wantedGenome)) {
+				if(!cReplace.equals("C")) {
+					if(!aReplace.equals("A")) {
+						System.out.println("B --> " +bReplace +"\nA --> " +aReplace +"\nC --> " +cReplace);
+					}
+					else {
+						System.out.println("B --> " +bReplace +"\nC --> " +cReplace);
+					}
+				}
+				else if(!aReplace.equals("A")) {
+					System.out.println("B --> " +bReplace +"\nA --> " +aReplace);
+				}
+				else {
+					System.out.println("B --> " +bReplace);
+				}
+			}
+
+			else if(srcGenome.replace("B", bReplace).replace("C", cReplace).replace("A", aReplace).equals(wantedGenome)) {
+				if(!aReplace.equals("A")) {
+					if(!cReplace.equals("C")) {
+						System.out.println("B --> " +bReplace +"\nC --> " +cReplace +"\nA --> " +aReplace);
+					}
+					else {
+						System.out.println("B --> " +bReplace +"\nA --> " +aReplace);
+					}
+				}
+				else if(!aReplace.equals("C")) {
+					System.out.println("B --> " +bReplace +"\nC --> " +cReplace);
+				}
+				else {
+					System.out.println("B --> " +bReplace);
+				}
+			}
+
+			else if(srcGenome.replace("C", cReplace).replace("A", aReplace).replace("B", bReplace).equals(wantedGenome)) {
+				if(!bReplace.equals("B")) {
+					if(!aReplace.equals("A")) {
+						System.out.println("C --> " +cReplace +"\nA --> " +aReplace +"\nB --> " +bReplace);
+					}
+					else {
+						System.out.println("C --> " +cReplace +"\nB --> " +bReplace);
+					}
+				}
+				else if(!aReplace.equals("A")) {
+					System.out.println("C --> " +cReplace +"\nA --> " +aReplace);
+				}
+				else {
+					System.out.println("C --> " +cReplace);
+				}
+			}
+
+			else if(srcGenome.replace("C", cReplace).replace("B", bReplace).replace("A", aReplace).equals(wantedGenome)) {
+				if(!aReplace.equals("A")) {
+					if(!bReplace.equals("B")) {
+						System.out.println("C --> " +cReplace +"\nB --> " +bReplace +"\nA --> " +aReplace);
+					}
+					else {
+						System.out.println("C --> " +cReplace +"\nA --> " +aReplace);
+					}
+				}
+				else if(!bReplace.equals("B")) {
+					System.out.println("C --> " +cReplace +"\nB --> " +bReplace);
+				}
+				else {
+					System.out.println("C --> " +cReplace);
+				}
+			}
+
+			else {
+				bestMultationQuantity = 4;
+			}
+			System.out.println(bestMultationQuantity);
+			return true;
+		}
+		if(bestMultationQuantity == 4) {
+			System.out.println("BOZZOOO");
+			return false;
+		}
+		else {
+			return false;
+		}
+
 	}
+
 
 	public static boolean doesItMutate(String srcGenome, String[] containeredGenome, int aOccurenceNumber, int bOccurenceNumber, int cOccurenceNumber) {
 		if(srcGenome.indexOf('A') != -1) {
@@ -210,10 +343,9 @@ public class Uppgift09 {
 				index = srcGenome.indexOf('B', index + 1);
 			}
 
-			for(int i = 0; i < aOccurenceNumber - 1; i++) {
-				for(int j = i + 1; j < aOccurenceNumber; j++) {
+			for(int i = 0; i < bOccurenceNumber - 1; i++) {
+				for(int j = i + 1; j < bOccurenceNumber; j++) {
 					if (!containeredGenome[bOccurences[i]].equals(containeredGenome[bOccurences[j]])) {
-						System.out.println("B fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[bOccurences[i]] + "' second occ is '" + containeredGenome[bOccurences[j]] + "'");
 						return false;
 					}
 				}
@@ -230,10 +362,9 @@ public class Uppgift09 {
 				index = srcGenome.indexOf('C', index + 1);
 			}
 
-			for(int i = 0; i < aOccurenceNumber - 1; i++) {
-				for(int j = i + 1; j < aOccurenceNumber; j++) {
+			for(int i = 0; i < cOccurenceNumber - 1; i++) {
+				for(int j = i + 1; j < cOccurenceNumber; j++) {
 					if (!containeredGenome[cOccurences[i]].equals(containeredGenome[cOccurences[j]])) {
-						System.out.println("C fail i is " + i + " j is " + j + " first occ is '" + containeredGenome[cOccurences[i]] + "' second occ is '" + containeredGenome[cOccurences[j]] + "'");
 						return false;
 					}
 				}
@@ -260,7 +391,7 @@ public class Uppgift09 {
 			if(containeredGenome[srcGenome.indexOf('B')].length() > 1) {
 				mutationsQuantity++;
 			}
-			else if(aOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('B')) != containeredGenome[srcGenome.indexOf('B')].charAt(0)) {
+			else if(bOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('B')) != containeredGenome[srcGenome.indexOf('B')].charAt(0)) {
 				mutationsQuantity++;
 			}
 		}
@@ -269,7 +400,7 @@ public class Uppgift09 {
 			if(containeredGenome[srcGenome.indexOf('C')].length() > 1) {
 				mutationsQuantity++;
 			}
-			else if(aOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('C')) != containeredGenome[srcGenome.indexOf('C')].charAt(0)) {
+			else if(cOccurenceNumber > 0 && srcGenome.charAt(srcGenome.indexOf('C')) != containeredGenome[srcGenome.indexOf('C')].charAt(0)) {
 				mutationsQuantity++;
 			}
 		}
@@ -278,9 +409,10 @@ public class Uppgift09 {
 	}
 
 
+
 	public static void randomMultation() {
-		int genomeLength = (int)(Math.random() * 4 + 2);
-		int multationNumber = (int) (Math.random() * 3 + 1);
+		int genomeLength = (int)(Math.random() * 5 + 1);
+		int multationNumber = (int) (Math.random()  + 3);
 
 		String genome = "";
 
@@ -294,10 +426,10 @@ public class Uppgift09 {
 		System.out.println(genome);
 
 		for(int i = 0; i < multationNumber; i++) {
-			String charToReplace = "";
+			String charToReplace = "C";
 			charReplacement = "";
 
-			charToReplace += (char) (int)(Math.random() * 3 + 65);
+			//charToReplace += (char) (int)(Math.random() * 3 + 65);
 			System.out.println("Char to replace is " +charToReplace +" " +i);
 
 
@@ -311,7 +443,7 @@ public class Uppgift09 {
 
 			genome = genome.replace(charToReplace, charReplacement);
 
-			System.out.println(genome);
+			System.out.println(genome +" " +genome.length());
 		}
 	}
 
