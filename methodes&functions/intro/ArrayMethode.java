@@ -1,6 +1,6 @@
 package intro;
 
-public class arrayMethod {
+public class ArrayMethode {
 
 	public static void main(String[] args) {
 		//test array

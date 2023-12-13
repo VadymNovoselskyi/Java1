@@ -9,6 +9,7 @@
 	<classpathentry kind="src" path="Math"/>
 	<classpathentry kind="src" path="Inluppga"/>
 	<classpathentry kind="src" path="methodes&amp;functions"/>
+	<classpathentry kind="src" path="tryCatch"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
