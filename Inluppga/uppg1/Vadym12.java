@@ -1,4 +1,4 @@
-package inlupp12;
+package uppg1;
 
 import java.util.Scanner;
 
