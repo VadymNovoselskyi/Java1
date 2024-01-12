@@ -58,7 +58,7 @@ public class Uppgift04 {
 				charArray[replaceIndex] = replaceChar; //prova att placera char replaceChar på index replaceIndex
 				outOfBounds = false; //om try-catch catchar inte error, då index är in bounds
 			} catch (ArrayIndexOutOfBoundsException e) { //om replaceIndex är mindre eller större än indexer som finns i charArray
-				outOfBounds = true; //markera index som out of bounds
+				outOfBounds = true; //markera index som out of bounds 
 				System.out.println("Wrong index, try again");
 				replaceIndex = input.nextInt(); //mäta in ny index
 			}

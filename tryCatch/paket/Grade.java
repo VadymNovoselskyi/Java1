@@ -22,7 +22,7 @@ public class Grade {
 		for(int i = 0; i < frequency.length; i++) {
 			System.out.println("Grade " +i +" occurs " +frequency[i] +" time(s)");
 			if(i == frequency.length - 1) {
-				System.out.println("With " +error +" errors");
+				System.out.println("With " +error +" error(s)");
 			}
 		}
 		
