@@ -7,14 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import bank.Account;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -24,7 +26,8 @@ public class Vadym3 extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtInName;
 	private JTextField txtInNumber;
-	
+	ArrayList<Person> personList = new ArrayList<>();
+
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +47,9 @@ public class Vadym3 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Vadym3() {
+	public Vadym3() {	
+		load();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 820, 459);
 		contentPane = new JPanel();
@@ -58,8 +63,18 @@ public class Vadym3 extends JFrame {
 		contentPane.add(lblName);
 
 		JLabel lblNumber = new JLabel("Telephone number");
-		lblNumber.setBounds(149, 25, 146, 17);
+		lblNumber.setBounds(171, 27, 146, 17);
 		contentPane.add(lblNumber);
+
+		JLabel lblNewName = new JLabel("Enter new name");
+		lblNewName.setBounds(20, 25, 108, 20);
+		contentPane.add(lblNewName);
+		lblNewName.setVisible(false);
+
+		JLabel lblNewNumber = new JLabel("Enter new number");
+		lblNewNumber.setBounds(149, 25, 146, 17);
+		contentPane.add(lblNewNumber);
+		lblNewNumber.setVisible(false);
 
 		txtInName = new JTextField();
 		txtInName.setBounds(20, 56, 96, 20);
@@ -67,82 +82,151 @@ public class Vadym3 extends JFrame {
 		txtInName.setColumns(10);
 
 		txtInNumber = new JTextField();
-		txtInNumber.setBounds(149, 56, 96, 20);
+		txtInNumber.setBounds(171, 56, 96, 20);
 		contentPane.add(txtInNumber);
 		txtInNumber.setColumns(10);
+
+		JTextField txtInNewName = new JTextField();
+		txtInNewName.setBounds(20, 56, 96, 20);
+		contentPane.add(txtInNewName);
+		txtInNewName.setColumns(10);
+		txtInNewName.setVisible(false);
+
+		JTextField txtInNewNumber = new JTextField();
+		txtInNewNumber.setBounds(149, 56, 96, 20);
+		contentPane.add(txtInNewNumber);
+		txtInNewNumber.setColumns(10);
+		txtInNewNumber.setVisible(false);
 
 		JButton btnAdd = new JButton("Add");
 		btnAdd.setBounds(577, 108, 126, 23);
 		contentPane.add(btnAdd);
 
-/*		JButton btnErase = new JButton("Erase");
-		btnErase.setBounds(577, 107, 126, 23);
-		contentPane.add(btnErase);
-
-		JButton btnEdit = new JButton("Edit");
-		btnEdit.setBounds(577, 152, 126, 23);
-		contentPane.add(btnEdit); */
-
 		JButton btnShowAll = new JButton("Show all");
 		btnShowAll.setBounds(577, 142, 126, 23);
 		contentPane.add(btnShowAll);
 
-		JButton btnSearch = new JButton("Search number");
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.setBounds(577, 108, 126, 23);
+		contentPane.add(btnEdit);
+		btnEdit.setVisible(false);
 
+		JButton btnErase = new JButton("Erase");
+		btnErase.setBounds(577, 142, 126, 23);
+		contentPane.add(btnErase);
+		btnErase.setVisible(false);
+
+		JButton btnSearch = new JButton("Search number");
 		btnSearch.setBounds(577, 178, 126, 23);
 		contentPane.add(btnSearch);
+
+		JButton btnProceed = new JButton("Proceed");
+		btnProceed.setBounds(577, 178, 126, 23);
+		contentPane.add(btnProceed);
+		btnProceed.setVisible(false);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(24, 107, 470, 304);
 		contentPane.add(textArea);
-		
-		ArrayList<Person> personList = new ArrayList<>();
+
+		int[] searchedIndex = {-1};
 
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String txtName = txtInName.getText();
 				String txtNumber = txtInNumber.getText();
 
-				int currentIndex = personList.size();
-				personList.add(new Person (txtName));
-				personList.get(currentIndex).setNumber(txtNumber);
+				if(txtName.equals("") || txtNumber.equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill both name and number fields");
+				}
+				else {
+					if(personList.size() != 0) {						
+						for(int i = 0; i < personList.size(); i++) {
+							if(txtNumber.equals(personList.get(i).getNumber())) {
+								JOptionPane.showMessageDialog(null, "This number already exists in the phone book");
+							}
+							else if(i == personList.size() - 1) {							
+								personList.add(new Person (txtName));
+								personList.get(personList.size() - 1).setNumber(txtNumber);
+								textArea.setText("Succesfully added " +txtName);
+								break;
+							}
+						}
+					}
+					else {
+						personList.add(new Person (txtName));
+						personList.get(personList.size() - 1).setNumber(txtNumber);
+						textArea.setText("Succesfully added " +txtName);	
+					}
+				}
+				save();
 			}
 		});
 
-/*		btnErase.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textArea.setText("");
-				String txtName = txtInName.getText();
-				
-				int searchedIndex = -1;
-				for(int i = 0; i < personList.size(); i++) {
-					if(txtName.equals(personList.get(i).getName())) {
-						searchedIndex = i;
-					}
-				}
-				
-				personList.remove(searchedIndex);
-				textArea.setText(txtName +" is now removed from data");
-			}
-		});
-		
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textArea.setText("");
-				String txtName = txtInName.getText();
-				
-				int searchedIndex = -1;
-				for(int i = 0; i < personList.size(); i++) {
-					if(txtName.equals(personList.get(i).getName())) {
-						searchedIndex = i;
-					}
+				String txtNewName = txtInNewName.getText();
+				String txtNewNumber = txtInNewNumber.getText();
+
+				if(txtNewName.equals("") || txtNewNumber.equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill both name and number fields");
 				}
-				String replacementName = JOptionPane.showInputDialog("Enter name you want to change the name to");
-				
-				personList.get(searchedIndex).setName(replacementName);
+				else {					
+					textArea.setText("The searched person is: \r\nOld name: " +personList.get(searchedIndex[0]).getName() +"; Old number: " +personList.get(searchedIndex[0]).getNumber() +"");
+
+					personList.get(searchedIndex[0]).setName(txtNewName);
+					personList.get(searchedIndex[0]).setNumber(txtNewNumber);
+
+					textArea.append("\n\rNew name is: " +personList.get(searchedIndex[0]).getName() +"; New number is: " +personList.get(searchedIndex[0]).getNumber());
+
+					lblName.setVisible(true);
+					lblNumber.setVisible(true);
+					txtInName.setVisible(true);
+					txtInNumber.setVisible(true);
+					btnAdd.setVisible(true);
+					btnShowAll.setVisible(true);
+					btnSearch.setVisible(true);
+
+					lblNewName.setVisible(false);
+					lblNewNumber.setVisible(false);
+					txtInNewName.setVisible(false);
+					txtInNewNumber.setVisible(false);
+					btnEdit.setVisible(false);
+					btnErase.setVisible(false);
+					btnProceed.setVisible(false);
+
+					txtInName.setText("");
+					txtInNumber.setText("");
+				}
 			}
-		}); */
-		
+		});
+
+		btnErase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText("The erased person is: \r\nName: " +personList.get(searchedIndex[0]).getName() +"; Number: " +personList.get(searchedIndex[0]).getNumber());
+				personList.remove(searchedIndex[0]);
+
+				lblName.setVisible(true);
+				lblNumber.setVisible(true);
+				txtInName.setVisible(true);
+				txtInNumber.setVisible(true);
+				btnAdd.setVisible(true);
+				btnShowAll.setVisible(true);
+				btnSearch.setVisible(true);
+
+				lblNewName.setVisible(false);
+				lblNewNumber.setVisible(false);
+				txtInNewName.setVisible(false);
+				txtInNewNumber.setVisible(false);
+				btnEdit.setVisible(false);
+				btnErase.setVisible(false);
+				btnProceed.setVisible(false);
+
+				txtInName.setText("");
+				txtInNumber.setText("");
+			}
+		});
+
 		btnShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.setText("");
@@ -152,26 +236,90 @@ public class Vadym3 extends JFrame {
 			}
 		});
 
+		btnProceed.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText("Proceeded without changes");
+
+				lblName.setVisible(true);
+				lblNumber.setVisible(true);
+				txtInName.setVisible(true);
+				txtInNumber.setVisible(true);
+				btnAdd.setVisible(true);
+				btnShowAll.setVisible(true);
+				btnSearch.setVisible(true);
+
+				lblNewName.setVisible(false);
+				lblNewNumber.setVisible(false);
+				txtInNewName.setVisible(false);
+				txtInNewNumber.setVisible(false);
+				btnEdit.setVisible(false);
+				btnErase.setVisible(false);
+				btnProceed.setVisible(false);
+
+				txtInName.setText("");
+				txtInNumber.setText("");
+			}
+		});
+
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String txtName = txtInName.getText();
 
-				int searchedIndex = -1;
+				searchedIndex[0] = -1;
 				for(int i = 0; i < personList.size(); i++) {
 					if(txtName.equals(personList.get(i).getName())) {
-						searchedIndex = i;
+						searchedIndex[0] = i;
 					}
 				}
-				textArea.setText("");
-				textArea.append("Name: " +personList.get(searchedIndex).getName() +"; Number: " +personList.get(searchedIndex).getNumber());
-				
-				contentPane = new JPanel();
-				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+				if(searchedIndex[0] != -1) {					
+					textArea.setText("The searched person is: \r\nName: " +personList.get(searchedIndex[0]).getName() +"; Number: " +personList.get(searchedIndex[0]).getNumber());
 
-				setContentPane(contentPane);
-				contentPane.setLayout(null);
+					lblName.setVisible(false);
+					lblNumber.setVisible(false);
+					txtInName.setVisible(false);
+					txtInNumber.setVisible(false);
+					btnAdd.setVisible(false);
+					btnShowAll.setVisible(false);
+					btnSearch.setVisible(false);
+
+					lblNewName.setVisible(true);
+					lblNewNumber.setVisible(true);
+					txtInNewName.setVisible(true);
+					txtInNewNumber.setVisible(true);
+					btnEdit.setVisible(true);
+					btnErase.setVisible(true);
+					btnProceed.setVisible(true);
+
+					txtInNewName.setText("");
+					txtInNewNumber.setText("");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "No person was found, try again");
+				}
+
 			}
 		});
 
 	}
+	public void save() {
+		try {
+			ObjectOutputStream oos =  new ObjectOutputStream(new FileOutputStream("customer.txt"));
+			oos.writeObject(personList);
+			oos.flush();
+			oos.close();
+		}catch(Exception exeption) {
+			exeption.printStackTrace();
+		}
+	}
+
+	public void load() {
+		try{
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream("customer.txt"));
+			personList = (ArrayList)ois.readObject();
+			ois.close();
+		}catch(Exception exeption) {
+			exeption.printStackTrace();
+		}
+	}
 }
+
