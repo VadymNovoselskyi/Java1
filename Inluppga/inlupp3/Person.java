@@ -1,17 +1,17 @@
 package inlupp3;
 
-import java.io.Serializable;
+import java.io.Serializable; //behövs för att spara/ladda up filer
 
 public class Person implements Serializable {
-	private String name;
-	private String txtNumber;
+	private String name; //persons namn
+	private String txtNumber; //persons nummer
 	
 	//konstruktor
 	public Person(String name) {
 		this.name = name;
 	}
 	
-	//set
+	//setters
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -19,7 +19,7 @@ public class Person implements Serializable {
 		this.txtNumber = txtNumber;
 	}
 	
-	//get
+	//getters
 	public String getName() {
 		return name;
 	}
