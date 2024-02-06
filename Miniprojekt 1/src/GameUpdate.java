@@ -13,61 +13,94 @@
 public class GameUpdate {
 	// Koordinater för spelfigurerna
 	int greenX = 900, greenY = 200;
-	int greyX = 10, greyY = 200;
+	int greyX = 12, greyY = 200;
 	
 	/**
 	 * Anropas då vänster piltangent trycks ner
 	 */
 	public void leftKey(){
-		greenX -= 10;
+		if(greenX > 8) {			
+			greenX -= 8;
+		}
 	}
 	
 	/**
 	 * Anropas då höger piltangent trycks ner
 	 */
 	public void rightKey(){
-		greenX += 10;
+		if(greenX < 896) {			
+			greenX += 8;
+		}
 	}
 	
 	/**
 	 * Anropas då upp piltangent trycks ner
 	 */
 	public void upKey(){
-		greenY -= 10;
+		if(greenY > 8) {			
+			greenY -= 8;
+		}
 	}
 	
 	/**
 	 * Anropas då ner piltangent trycks ner
 	 */
 	public void downKey(){
-		greenY += 10;
+		if(greenY < 600) {			
+			greenY += 8;
+		}
 	}
 	
 	/**
 	 * Anropas då A tangenten trycks ner
 	 */
 	public void aKey(){
-		greyX -= 10;
+		if(greyX > 8) {			
+			greyX -= 8;
+		}
 	}
 	
 	/**
 	 * Anropas då D tangenten trycks ner
 	 */
 	public void dKey(){
-		greyX += 10;
+		if(greyX < 896) {			
+			greyX += 8;
+		}
 	}
 	
 	/**
 	 * Anropas då W tangenten trycks ner
 	 */
 	public void wKey(){
-		greyY -= 10;
+		if(greyY > 8) {			
+			greyY -= 8;
+		}
 	}
 	
 	/**
 	 * Anropas då S tangenten trycks ner
 	 */
 	public void sKey(){
-		greyY += 10;
+		if(greyY < 600) {			
+			greyY += 8;
+		}
+	}
+	
+	//kolision-mekanik
+	public boolean isCollided() { //kollar om flygplan har kolliderat	
+		if(Math.abs(greenX - greyX) <= 120 && Math.abs(greenY - greyY) <= 34) { //om x/y koordinaterna för flygplanner krossar varandra
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void collision() {
+		greenX = 900;
+		greenY = 200;
+		greyX = 12;
+		greyY = 200;
 	}
 }
