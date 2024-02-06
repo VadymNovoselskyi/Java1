@@ -304,7 +304,7 @@ public class Vadym3 extends JFrame {
 				}
 				else { //om for-looper hittar egtersökte namn:
 					JOptionPane.showMessageDialog(null, "No person found, try again"); //visar popup dialog
-				}
+				}	
 			}
 		});
 

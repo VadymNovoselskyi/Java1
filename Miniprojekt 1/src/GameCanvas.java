@@ -68,7 +68,7 @@ public class GameCanvas extends Canvas implements KeyListener{
 		while(gameLoop){
 			update();
 			render();
-			try{ Thread.sleep(20);}catch(Exception e){};
+		try{ Thread.sleep(20);}catch(Exception e){};
 		}
 
 	}
@@ -76,8 +76,10 @@ public class GameCanvas extends Canvas implements KeyListener{
 	public void update(){
 		if(keyDownMap.containsKey(KeyEvent.VK_LEFT))
 			gm.leftKey();
+		
 		if(keyDownMap.containsKey(KeyEvent.VK_RIGHT))
 			gm.rightKey();
+		
 		if(keyDownMap.containsKey(KeyEvent.VK_UP))
 			gm.upKey();
 		
@@ -110,6 +112,11 @@ public class GameCanvas extends Canvas implements KeyListener{
 		if(keyDownMap.containsKey(KeyEvent.VK_ESCAPE)){
 			gameLoop = false;
 			System.exit(0);
+		}
+		
+		//kolision-mekanik
+		if(gm.isCollided()) {
+			gm.collision();
 		}
 	}
 	
